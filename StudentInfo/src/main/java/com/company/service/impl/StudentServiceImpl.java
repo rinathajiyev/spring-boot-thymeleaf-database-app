@@ -1,14 +1,16 @@
-package com.company.service;
+package com.company.service.impl;
 
 import com.company.dao.*;
 import com.company.entity.*;
+import com.company.service.inter.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
@@ -18,8 +20,12 @@ public class StudentServiceImpl implements StudentService{
         return studentRepository.findAll();
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Students saveStudent(Students student) {
+        String password = this.passwordEncoder.encode(student.getPassword());
+        student.setPassword(password);
        return studentRepository.save(student);
     }
 

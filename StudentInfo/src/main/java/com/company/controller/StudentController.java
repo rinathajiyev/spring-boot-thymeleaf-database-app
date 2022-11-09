@@ -1,7 +1,7 @@
 package com.company.controller;
 
 import com.company.entity.*;
-import com.company.service.*;
+import com.company.service.inter.*;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
